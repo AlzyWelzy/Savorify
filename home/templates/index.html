@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block content %}
+
+<header>
+  <h1 class="text-center">Savorify</h1>
+</header>
+
+<main class="container mt-4">
+  <form id="recipeForm" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="recipeName">Recipe Name</label>
+    <input
+      type="text"
+      id="recipeName"
+      class="form-control"
+      placeholder="Enter recipe name"
+      name="recipe_name"
+      required
+    />
+
+    <label for="recipeDescription">Recipe Description</label>
+    <textarea
+      id="recipeDescription"
+      class="form-control"
+      rows="3"
+      placeholder="Enter recipe description"
+      name="recipe_description"
+      required
+    ></textarea>
+
+    <label for="recipeImage">Recipe Image URL</label>
+    <input
+      type="file"
+      id="recipeImage"
+      class="form-control"
+      placeholder="Enter image URL"
+      name="recipe_image"
+      required
+    />
+
+    <button type="submit" class="btn btn-primary mt-3 w-100">Submit</button>
+  </form>
+</main>
+
+<footer class="text-center mt-auto">
+  <p>&copy; {{year}} Savorify. All rights reserved.</p>
+</footer>
+{% endblock %}
