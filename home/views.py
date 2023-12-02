@@ -16,6 +16,12 @@ def index(request):
         return redirect("/")
 
     queryset = Home.objects.all()
+
+    if request.GET.get("recipe_search"):
+        queryset = queryset.filter(
+            recipe_name__icontains=request.GET.get("recipe_search")
+        )
+
     context = {
         "title": "Savorify",
         "year": datetime.datetime.now().year,
