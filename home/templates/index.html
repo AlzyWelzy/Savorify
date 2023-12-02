@@ -48,12 +48,13 @@
           <th scope="col">Name</th>
           <th scope="col">Description</th>
           <th scope="col">Image</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
         {% for recipe in recipes %}
         <tr>
-          <th scope="row">{{recipe.id}}</th>
+          <th scope="row">{{forloop.counter}}</th>
           <td>{{recipe.recipe_name}}</td>
           <td>{{recipe.recipe_description}}</td>
           <td>
@@ -64,7 +65,15 @@
               height="100"
             />
           </td>
+          <td>
+            <a
+              href="{% url 'delete_recipe' recipe.id %}"
+              class="btn btn-danger btn-sm"
+              >Delete</a
+            >
+          </td>
         </tr>
+
         {% endfor %}
       </tbody>
     </table>

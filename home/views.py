@@ -13,7 +13,7 @@ def index(request):
         home.recipe_image = request.FILES.get("recipe_image")
         home.save()
 
-        return redirect("/add")
+        return redirect("/")
 
     queryset = Home.objects.all()
     context = {
@@ -23,3 +23,9 @@ def index(request):
     }
 
     return render(request, "index.html", context)
+
+
+def delete_recipe(request, id):
+    recipe = Home.objects.get(id=id)
+    recipe.delete()
+    return redirect("/")
