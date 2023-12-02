@@ -39,6 +39,24 @@
 
     <button type="submit" class="btn btn-primary mt-3 w-100">Submit</button>
   </form>
+
+  <section class="mt-5 mb-5 d-flex justify-content-center">
+    {% for recipe in recipes %}
+
+    <div class="card m-3" style="width: 18rem">
+      <img
+        src="{{recipe.recipe_image.url}}"
+        class="card-img-top"
+        alt="{{recipe.recipe_name}}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{recipe.recipe_name}}</h5>
+        <p class="card-text">{{recipe.recipe_description}}</p>
+      </div>
+    </div>
+
+    {% endfor %}
+  </section>
 </main>
 
 <footer class="text-center mt-auto">

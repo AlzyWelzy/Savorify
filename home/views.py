@@ -6,10 +6,6 @@ import datetime
 
 
 def index(request):
-    context = {
-        "title": "Savorify",
-        "year": datetime.datetime.now().year,
-    }
     if request.method == "POST":
         home = Home()
         home.recipe_name = request.POST.get("recipe_name")
@@ -17,6 +13,13 @@ def index(request):
         home.recipe_image = request.FILES.get("recipe_image")
         home.save()
 
-        return redirect("/")
+        return redirect("/add")
+
+    queryset = Home.objects.all()
+    context = {
+        "title": "Savorify",
+        "year": datetime.datetime.now().year,
+        "recipes": queryset,
+    }
 
     return render(request, "index.html", context)
