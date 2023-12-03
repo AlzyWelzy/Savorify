@@ -27,7 +27,12 @@
         required
       />
 
-      <button type="submit" class="btn btn-primary">Login</button>
+      <p>
+        Don't have an account with us?
+        <a href="{% url 'register' %}">Register</a>
+      </p>
+
+      <button type="submit" class="btn btn-primary w-100">Login</button>
     </fieldset>
   </form>
 </main>
