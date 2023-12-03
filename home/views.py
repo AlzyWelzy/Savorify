@@ -56,3 +56,11 @@ def delete_recipe(request, id):
     recipe = Home.objects.get(id=id)
     recipe.delete()
     return redirect("/")
+
+
+def login_page(request):
+    return render(request, "login.html")
+
+
+def register_page(request):
+    return render(request, "register.html")
