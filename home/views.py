@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.models import User
+from django.contrib import messages
 import datetime
 
 # Create your views here.
@@ -70,6 +71,11 @@ def register_page(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
 
+        user = User.objects.filter(username=username)
+        if user.exists():
+            messages.info(request, "Username already exists")
+            return redirect("/register")
+
         user = User.objects.create_user(
             first_name=first_name,
             last_name=last_name,
@@ -77,6 +83,7 @@ def register_page(request):
         )
         user.set_password(password)
         user.save()
+        messages.info(request, "Registered Successfully")
         return redirect("/register")
 
     return render(request, "register.html")

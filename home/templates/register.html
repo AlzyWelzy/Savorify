@@ -5,7 +5,12 @@
 
 <main class="container mt-5">
   <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+    {% csrf_token %} {% if messages %} {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+      {{ message }}
+    </div>
+    {% endfor %} {% endif %}
+
     <fieldset>
       <legend class="visually-hidden">Register Form</legend>
       <label for="first_name" class="form-label">First Name:</label>
